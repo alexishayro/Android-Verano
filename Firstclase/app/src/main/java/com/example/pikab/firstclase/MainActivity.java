@@ -19,15 +19,17 @@ public class MainActivity extends AppCompatActivity {
     public void MostrarMensajeLogin(View v){
 
         final TextView texto = (TextView) findViewById(R.id.id_user);
-        Toast mensaje = Toast.makeText(getApplicationContext(),"Cargando perfil de "+texto.getText(), Toast.LENGTH_SHORT);
-        mensaje.show();
         user_ID = texto.getText().toString();
+        Toast mensaje = Toast.makeText(getApplicationContext(),"Cargando perfil de "+user_ID, Toast.LENGTH_SHORT);
+        mensaje.show();
         Intent myIntent = new Intent(MainActivity.this, Main2Activity.class);
         myIntent.putExtra("key", texto.getText());
         MainActivity.this.startActivity(myIntent);
     }
 
-    public   String get_idUser(){
-        return user_ID;
+    public void passIdLogin(){
+        Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+        intent.putExtra("UserIDLogin",user_ID);
+        startActivity(intent);
     }
 }

@@ -19,6 +19,7 @@ import java.lang.String;
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String user_ID = new String();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,8 @@ public class Main2Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Obtenemos el IDUSER del MAINACTIVITY
+
 
     }
 
@@ -60,13 +63,10 @@ public class Main2Activity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
-
-
-        //TextView texto_iduser = (TextView) MainActivity.
-        //String name_iduser = texto_iduser.getText().toString();
-        //if(name_iduser.isEmpty())
-        //{
-
+        //putUserIDMenu(user_ID);
+        user_ID = getIntent().getExtras().getString("UserIDLogin");
+        TextView texto = (TextView) findViewById(R.id.label_IdUser);
+        texto.setText(user_ID);
         return true;
     }
 
@@ -105,17 +105,10 @@ public class Main2Activity extends AppCompatActivity
         return true;
     }
 
-    public void WellcomeUser(){
-        String name_user = new String();
-        TextView texto_login = (TextView) findViewById(R.id.id_user);
-        name_user = texto_login.getText().toString();
-        if(name_user.isEmpty()) {
-            TextView texto1 = (TextView) findViewById(R.id.label_IdUser);
-            texto1.setText(name_user);
-        }else {
-            TextView texto1 = (TextView) findViewById(R.id.label_IdUser);
-            texto1.setText("Unknown");
-        }
+    // Ponemos el nombre al menu
+    public void putUserIDMenu(String name ){
+        TextView texto = (TextView) findViewById(R.id.label_IdUser);
+        texto.setText(name);
     }
 
 }
